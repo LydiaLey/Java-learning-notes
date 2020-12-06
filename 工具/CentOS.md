@@ -38,6 +38,17 @@
 
 - ifconfig  查看网络配置
 
+- 端口配置
+
+  - systemctl restart firewalld.service   重启防火墙
+  - systemctl stop firewalld.service   关闭防火墙
+  - firewall-cmd --list-ports    查看开放的端口
+  - firewall-cmd --zone=public --add-port=xx/tcp(udp) --permanent    添加端口
+  - **开启端口后要重启防火墙才能生效**
+  - **阿里云还需要在管理平台开启安全组**
+
+  
+
 
 
 ## 文件系统
@@ -98,18 +109,25 @@
 
     - 会装在/usr/java 下
 
-  - ==在**/etc/profile**下配置环境变量==
+  - 用rpm安装不需要配置环境变量
 
   - 跑一个jar包
 
     - 先在本地试一下看能不能跑，能不能正常使用
 
     - 看防火墙端口是否开启，没有的话开启然后重启防火墙，阿里云还要配置安全组规则 
-
 - rpm删除JDK
   - rpm -qa|grep jdk      过滤jdk的信息
   - rpm -e --nodeps  刚刚得到的jdk信息            强制删除jdk 如果有的话
-
-- 解压缩安装
+- 解压缩安装Tomcat
+  - SSM项目是以war包的形式部署到Tomcat上的
+  - 先下载Tomcat的tar.gz包，上传到linux文件夹
+  - 然后 tar -zxvf  压缩包名     解压
+  - 到bin目录下    ./startup.sh        运行bin目录下的startup.sh，即可启动tomcat   
 - yum在线安装
+  - yum -y install gcc gcc-c++     yum安装c/c++ 编译器
+
+## 网络
+
+-  
 
